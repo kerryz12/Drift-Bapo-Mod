@@ -1,5 +1,6 @@
 package com.driftbapo.driftbapomod.common.tools;
 
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.IItemTier;
@@ -29,7 +30,12 @@ public class BrianAxe extends AxeItem {
         ItemStack itemStackIn = p.getHeldItem(handIn);
         BlockRayTraceResult rayTraceResult = this.rayTrace(worldIn, p, RayTraceContext.FluidMode.NONE);
         BlockPos origin = rayTraceResult.getPos();
-        worldIn.destroyBlock(origin,true);
+
+        if (worldIn.getBlockState(origin).getBlock().equals(Blocks.STRIPPED_OAK_LOG) || worldIn.getBlockState(origin).getBlock().equals(Blocks.BIRCH_LOG)
+        || worldIn.getBlockState(origin).getBlock().equals(Blocks.ACACIA_LOG) || worldIn.getBlockState(origin).getBlock().equals(Blocks.JUNGLE_LOG)) {
+            worldIn.destroyBlock(origin, true);
+
+        }
 
         return ActionResult.resultPass(itemStackIn);
 
