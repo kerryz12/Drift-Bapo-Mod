@@ -31,14 +31,44 @@ public class BrianAxe extends AxeItem {
         BlockRayTraceResult rayTraceResult = this.rayTrace(worldIn, p, RayTraceContext.FluidMode.NONE);
         BlockPos origin = rayTraceResult.getPos();
 
-        if (worldIn.getBlockState(origin).getBlock().equals(Blocks.STRIPPED_OAK_LOG) || worldIn.getBlockState(origin).getBlock().equals(Blocks.BIRCH_LOG)
-        || worldIn.getBlockState(origin).getBlock().equals(Blocks.ACACIA_LOG) || worldIn.getBlockState(origin).getBlock().equals(Blocks.JUNGLE_LOG)) {
+        if (worldIn.getBlockState(origin).getBlock().equals(Blocks.STRIPPED_OAK_LOG) || worldIn.getBlockState(origin).getBlock().equals(Blocks.OAK_LOG)
+                || worldIn.getBlockState(origin).getBlock().equals(Blocks.BIRCH_LOG) || worldIn.getBlockState(origin).getBlock().equals(Blocks.OAK_LEAVES)
+                || worldIn.getBlockState(origin).getBlock().equals(Blocks.ACACIA_LOG) || worldIn.getBlockState(origin).getBlock().equals(Blocks.JUNGLE_LOG)) {
+
             worldIn.destroyBlock(origin, true);
+
+            helper_function(worldIn, p, handIn, origin.add(1, 0, 0));
+            helper_function(worldIn, p, handIn, origin.add(-1, 0, 0));
+            helper_function(worldIn, p, handIn, origin.add(0, 1, 0));
+            helper_function(worldIn, p, handIn, origin.add(0, -1, 0));
+            helper_function(worldIn, p, handIn, origin.add(0, 0, 1));
+            helper_function(worldIn, p, handIn, origin.add(0, 0, -1));
 
         }
 
         return ActionResult.resultPass(itemStackIn);
 
+    }
+
+    public ActionResult<ItemStack> helper_function(World worldIn, PlayerEntity p, Hand handIn, BlockPos origin) {
+        ItemStack itemStackIn = p.getHeldItem(handIn);
+
+        if (worldIn.getBlockState(origin).getBlock().equals(Blocks.STRIPPED_OAK_LOG) || worldIn.getBlockState(origin).getBlock().equals(Blocks.OAK_LOG)
+                || worldIn.getBlockState(origin).getBlock().equals(Blocks.BIRCH_LOG) || worldIn.getBlockState(origin).getBlock().equals(Blocks.OAK_LEAVES)
+                || worldIn.getBlockState(origin).getBlock().equals(Blocks.ACACIA_LOG) || worldIn.getBlockState(origin).getBlock().equals(Blocks.JUNGLE_LOG)) {
+
+            worldIn.destroyBlock(origin, true);
+
+            helper_function(worldIn, p, handIn, origin.add(1, 0, 0));
+            helper_function(worldIn, p, handIn, origin.add(-1, 0, 0));
+            helper_function(worldIn, p, handIn, origin.add(0, 1, 0));
+            helper_function(worldIn, p, handIn, origin.add(0, -1, 0));
+            helper_function(worldIn, p, handIn, origin.add(0, 0, 1));
+            helper_function(worldIn, p, handIn, origin.add(0, 0, -1));
+
+        }
+
+        return ActionResult.resultPass(itemStackIn);
     }
 
 }
