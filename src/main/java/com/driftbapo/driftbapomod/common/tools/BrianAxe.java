@@ -1,13 +1,15 @@
 package com.driftbapo.driftbapomod.common.tools;
 
 import net.minecraft.block.Blocks;
+import net.minecraft.block.LeavesBlock;
+import net.minecraft.block.WoodType;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.AxeItem;
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.SwordItem;
+import net.minecraft.item.*;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.RayTraceContext;
@@ -26,7 +28,7 @@ public class BrianAxe extends AxeItem {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity p, Hand handIn){
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity p, Hand handIn) {
         counter = 0;
         ItemStack itemStackIn = p.getHeldItem(handIn);
         BlockRayTraceResult rayTraceResult = this.rayTrace(worldIn, p, RayTraceContext.FluidMode.NONE);
@@ -51,7 +53,7 @@ public class BrianAxe extends AxeItem {
 
         if (isTree(worldIn, origin)) {
             counter++;
-            if (counter > BLOCK_BREAK_LIMIT){
+            if (counter > BLOCK_BREAK_LIMIT) {
                 return ActionResult.resultFail(itemStackIn);
             }
             worldIn.destroyBlock(origin, true);
@@ -66,7 +68,19 @@ public class BrianAxe extends AxeItem {
         return ActionResult.resultPass(itemStackIn);
     }
 
-    private static boolean isTree(World worldIn, BlockPos origin){
+
+    private boolean isTree(World worldIn, BlockPos origin) {
+        ResourceLocation logsID = new ResourceLocation("minecraft", "logs");
+        ResourceLocation leavesID = new ResourceLocation("minecraft", "leaves");
+
+        if (BlockTags.getCollection().getTagByID(logsID).contains(worldIn.getBlockState(origin).getBlock())
+            || BlockTags.getCollection().getTagByID(leavesID).contains(worldIn.getBlockState(origin).getBlock()))
+            return true;
+
+        return false;
+    }
+
+    private static boolean isTreeOld(World worldIn, BlockPos origin) {
         if(worldIn.getBlockState(origin).getBlock().equals(Blocks.STRIPPED_OAK_LOG) || worldIn.getBlockState(origin).getBlock().equals(Blocks.OAK_LOG)
             || worldIn.getBlockState(origin).getBlock().equals(Blocks.STRIPPED_BIRCH_LOG) || worldIn.getBlockState(origin).getBlock().equals(Blocks.BIRCH_LOG)
             || worldIn.getBlockState(origin).getBlock().equals(Blocks.STRIPPED_ACACIA_LOG) || worldIn.getBlockState(origin).getBlock().equals(Blocks.ACACIA_LOG)
