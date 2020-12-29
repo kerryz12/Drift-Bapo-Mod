@@ -7,14 +7,15 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.RayTraceContext;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraft.block.BlockState;
+import java.util.Random;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -31,6 +32,10 @@ public class ZachBaton extends SwordItem {
         BlockPos origin = rayTraceResult.getPos();
         List<String> states = Arrays.asList("instrument", "note");
 
+        ResourceLocation location = new ResourceLocation("minecraft", randomSound());
+        SoundEvent event = new SoundEvent(location);
+        Random randomInt = new Random();
+
         if (worldIn.getBlockState(origin).getBlock().equals(Blocks.NOTE_BLOCK)) {
             BlockState state = worldIn.getBlockState(origin);
             states.set(0, state.get(BlockStateProperties.NOTE_BLOCK_INSTRUMENT).toString());
@@ -40,6 +45,10 @@ public class ZachBaton extends SwordItem {
                 p.sendMessage(new TranslationTextComponent(states.get(0)), p.getUniqueID());
                 p.sendMessage(new TranslationTextComponent(numToNote(states.get(1))), p.getUniqueID());
             }
+        }
+
+        else {
+            worldIn.playSound(p, origin, event, SoundCategory.PLAYERS, 100, randomInt.nextInt(25));
         }
 
         return ActionResult.resultPass(itemStackIn);
@@ -55,5 +64,18 @@ public class ZachBaton extends SwordItem {
                 "F#/Gb (Octave 3)");
 
         return note_list.get(numInt);
+    }
+
+    private String randomSound() {
+        Random rand = new Random();
+        int randInt = rand.nextInt(16);
+        List<String> noteblockType = Arrays.asList("block.note_block.banjo", "block.note_block.basedrum",
+                "block.note_block.bass", "block.note_block.bell", "block.note_block.bit", "block.note_block.chime",
+                "block.note_block.cow_bell", "block.note_block.didgeridoo", "block.note_block.flute",
+                "block.note_block.guitar", "block.note_block.harp", "block.note_block.hat",
+                "block.note_block.iron_xylophone", "block.note_block.pling", "block.note_block.snare",
+                "block.note_block.xylophone");
+
+        return noteblockType.get(randInt);
     }
 }

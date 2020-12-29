@@ -5,7 +5,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.crafting.Ingredient;
 
 public enum ZachItem implements IItemTier {
-    ZACHBATON(1.0F, 1.0F, 1500, 25, 25, Item.getItemById(264));
+    ZACHBATON(1.0F, 1.0F, -1, 25, 25, Item.getItemById(264));
 
     public static final String MODID = "driftbapomod";
     private float attackDamage, efficiency;
