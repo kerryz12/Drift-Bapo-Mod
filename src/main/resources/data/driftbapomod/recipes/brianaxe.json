@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "dnd",
+    "ehe",
+    " x "
+  ],
+  "key": {
+    "x": {
+      "item": "minecraft:netherite_ingot"
+    }
+  },
+    "h": {
+      "item": "minecraft:dragon_head"
+    }
+  },
+    "n": {
+      "item": "minecraft:nether_star"
+    }
+  },
+    "d": {
+      "item": "minecraft:diamond_block"
+    }
+  },
+    "e": {
+      "item": "minecraft:emerald_block"
+    }
+  },
+  "result": {
+    "item": "driftbapomod:brianaxe",
+    "count": 1
+  }
+}
