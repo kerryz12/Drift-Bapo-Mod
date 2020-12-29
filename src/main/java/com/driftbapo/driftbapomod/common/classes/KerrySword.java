@@ -1,4 +1,4 @@
-package com.driftbapo.driftbapomod.common.tools;
+package com.driftbapo.driftbapomod.common.classes;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.IItemTier;
