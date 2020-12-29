@@ -47,12 +47,12 @@ public class ZachBaton extends SwordItem {
 
     private String numToNote(String num) {
         int numInt = Integer.parseInt(num);
-        List<String> note_list = Arrays.asList("F#/Gf (Octave 1)", "G (Octave 1)", "G#/Af (Octave 1)", "A (Octave 1)",
-                "A#/Bf (Octave 1)", "B (Octave 1)", "C (Octave 1)", "C#/Df (Octave 1)", "D (Octave 1)",
-                "D#/Ef (Octave 1)", "E (Octave 1)", "F (Octave 1)", "F#/Gf (Octave 2)", "G (Octave 2)",
-                "G#/Af (Octave 2)", "A (Octave 2)", "A#/Bf (Octave 2)", "B (Octave 2)", "C (Octave 2)",
-                "C#/Df (Octave 2)", "D (Octave 2)", "D#/Ef (Octave 2)", "E (Octave 2)", "F (Octave 2)",
-                "F#/Gf (Octave 3)");
+        List<String> note_list = Arrays.asList("F#/Gb (Octave 1)", "G (Octave 1)", "G#/Ab (Octave 1)", "A (Octave 1)",
+                "A#/Bb (Octave 1)", "B (Octave 1)", "C (Octave 1)", "C#/Db (Octave 1)", "D (Octave 1)",
+                "D#/Eb (Octave 1)", "E (Octave 1)", "F (Octave 1)", "F#/Gb (Octave 2)", "G (Octave 2)",
+                "G#/Ab (Octave 2)", "A (Octave 2)", "A#/Bb (Octave 2)", "B (Octave 2)", "C (Octave 2)",
+                "C#/Db (Octave 2)", "D (Octave 2)", "D#/Eb (Octave 2)", "E (Octave 2)", "F (Octave 2)",
+                "F#/Gb (Octave 3)");
 
         return note_list.get(numInt);
     }
