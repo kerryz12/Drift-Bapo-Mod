@@ -1,7 +1,9 @@
 package com.driftbapo.driftbapomod.common;
 
 import com.driftbapo.driftbapomod.common.classes.BrianAxe;
+import com.driftbapo.driftbapomod.common.classes.CamdenResume;
 import com.driftbapo.driftbapomod.common.classes.ZachBaton;
+import com.driftbapo.driftbapomod.common.items.CamdenItem;
 import com.driftbapo.driftbapomod.common.items.ZachItem;
 import com.driftbapo.driftbapomod.common.tools.BrianItem;
 import com.driftbapo.driftbapomod.common.tools.KerryItem;
@@ -19,12 +21,16 @@ public class RegistryHandler {
     public static final DeferredRegister<Item> BRIAN = DeferredRegister.create(ForgeRegistries.ITEMS, BrianItem.MODID);
     public static final DeferredRegister<Item> KERRY = DeferredRegister.create(ForgeRegistries.ITEMS, KerryItem.MODID);
     public static final DeferredRegister<Item> ZACH = DeferredRegister.create(ForgeRegistries.ITEMS, ZachItem.MODID);
+    public static final DeferredRegister<Item> CAMDEN = DeferredRegister.create(ForgeRegistries.ITEMS, CamdenItem.MODID);
+
 
     public static void init() {
         // attach DeferredRegister to the event bus
         BRIAN.register(FMLJavaModLoadingContext.get().getModEventBus());
         KERRY.register(FMLJavaModLoadingContext.get().getModEventBus());
         ZACH.register(FMLJavaModLoadingContext.get().getModEventBus());
+        CAMDEN.register(FMLJavaModLoadingContext.get().getModEventBus());
+
     }
 
     // register item
@@ -41,5 +47,10 @@ public class RegistryHandler {
     // Zach
     public static final RegistryObject<SwordItem> ZACHBATON = ZACH.register("zachbaton", () ->
             new ZachBaton(ZachItem.ZACHBATON, 1, 1, (new Item.Properties()).group(ItemGroup.MISC))
+    );
+
+    // Camden
+    public static final RegistryObject<SwordItem> CAMDENRESUME = CAMDEN.register("camdenresume", () ->
+            new CamdenResume(CamdenItem.CAMDENRESUME, 1, 1, (new Item.Properties()).group(ItemGroup.MISC))
     );
 }

@@ -15,7 +15,6 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraft.block.BlockState;
 import java.util.Random;
-
 import java.util.Arrays;
 import java.util.List;
 
