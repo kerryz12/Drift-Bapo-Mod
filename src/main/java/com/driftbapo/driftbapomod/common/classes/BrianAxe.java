@@ -1,28 +1,23 @@
-package com.driftbapo.driftbapomod.common.tools;
+package com.driftbapo.driftbapomod.common.classes;
 
 import net.minecraft.block.Blocks;
-import net.minecraft.block.LeavesBlock;
-import net.minecraft.block.WoodType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.RayTraceContext;
-import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
-import net.minecraft.util.ActionResultType;
 
 public class BrianAxe extends AxeItem {
 
     private int counter;
     private static final int BLOCK_BREAK_LIMIT = 1000;
 
-    public BrianAxe (IItemTier itier, int ad, float atkspd, Properties builder){
+    public BrianAxe (IItemTier itier, int ad, float atkspd, Properties builder) {
         super(itier, ad, atkspd, builder);
         counter = 0;
     }
@@ -34,18 +29,9 @@ public class BrianAxe extends AxeItem {
         BlockRayTraceResult rayTraceResult = this.rayTrace(worldIn, p, RayTraceContext.FluidMode.NONE);
         BlockPos origin = rayTraceResult.getPos();
 
-        if (this.isTree(worldIn, origin)) {
-            worldIn.destroyBlock(origin, true);
-            helper_function(worldIn, p, handIn, origin.add(1, 0, 0));
-            helper_function(worldIn, p, handIn, origin.add(-1, 0, 0));
-            helper_function(worldIn, p, handIn, origin.add(0, 1, 0));
-            helper_function(worldIn, p, handIn, origin.add(0, -1, 0));
-            helper_function(worldIn, p, handIn, origin.add(0, 0, 1));
-            helper_function(worldIn, p, handIn, origin.add(0, 0, -1));
-        }
+        helper_function(worldIn, p, handIn, origin);
 
         return ActionResult.resultPass(itemStackIn);
-
     }
 
     private ActionResult<ItemStack> helper_function(World worldIn, PlayerEntity p, Hand handIn, BlockPos origin) {
@@ -67,7 +53,6 @@ public class BrianAxe extends AxeItem {
 
         return ActionResult.resultPass(itemStackIn);
     }
-
 
     private boolean isTree(World worldIn, BlockPos origin) {
         ResourceLocation logsID = new ResourceLocation("minecraft", "logs");

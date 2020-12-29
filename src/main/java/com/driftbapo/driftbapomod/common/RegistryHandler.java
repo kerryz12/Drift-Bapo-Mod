@@ -1,6 +1,8 @@
 package com.driftbapo.driftbapomod.common;
 
-import com.driftbapo.driftbapomod.common.tools.BrianAxe;
+import com.driftbapo.driftbapomod.common.classes.BrianAxe;
+import com.driftbapo.driftbapomod.common.classes.ZachBaton;
+import com.driftbapo.driftbapomod.common.items.ZachItem;
 import com.driftbapo.driftbapomod.common.tools.BrianItem;
 import com.driftbapo.driftbapomod.common.tools.KerryItem;
 import net.minecraft.item.AxeItem;
@@ -16,11 +18,13 @@ public class RegistryHandler {
     // create DeferredRegister object
     public static final DeferredRegister<Item> BRIAN = DeferredRegister.create(ForgeRegistries.ITEMS, BrianItem.MODID);
     public static final DeferredRegister<Item> KERRY = DeferredRegister.create(ForgeRegistries.ITEMS, KerryItem.MODID);
+    public static final DeferredRegister<Item> ZACH = DeferredRegister.create(ForgeRegistries.ITEMS, ZachItem.MODID);
 
     public static void init() {
         // attach DeferredRegister to the event bus
         BRIAN.register(FMLJavaModLoadingContext.get().getModEventBus());
         KERRY.register(FMLJavaModLoadingContext.get().getModEventBus());
+        ZACH.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 
     // register item
@@ -31,6 +35,11 @@ public class RegistryHandler {
 
     // Kerry
     public static final RegistryObject<SwordItem> KERRYSWORD = KERRY.register("kerrysword", () ->
-            new SwordItem(KerryItem.KERRYSWORD, 4, 15, (new Item.Properties()).group(ItemGroup.COMBAT))
+            new SwordItem(KerryItem.KERRYSWORD, 4, 16, (new Item.Properties()).group(ItemGroup.COMBAT))
+    );
+
+    // Zach
+    public static final RegistryObject<SwordItem> ZACHBATON = ZACH.register("zachbaton", () ->
+            new ZachBaton(ZachItem.ZACHBATON, 1, 1, (new Item.Properties()).group(ItemGroup.MISC))
     );
 }
