@@ -17,7 +17,10 @@ public class KerrySword extends SwordItem {
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity p, Hand handIn){
         ItemStack itemStackIn = p.getHeldItem(handIn);
-        return ActionResult.resultFail(itemStackIn);
+
+
+
+        return ActionResult.resultSuccess(itemStackIn);
     }
 
 }
