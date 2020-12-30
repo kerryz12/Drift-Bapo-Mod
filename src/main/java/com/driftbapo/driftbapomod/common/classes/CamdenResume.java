@@ -27,7 +27,8 @@ public class CamdenResume extends SwordItem {
         if (target.getEntity() instanceof VillagerEntity) {
             // get the target villager, create a new set of data with profession none, then set it to the target's data
             VillagerEntity villager = (VillagerEntity) target.getEntity();
-            VillagerData villagerData = new VillagerData(villager.getVillagerData().getType(), VillagerProfession.NONE, 0);
+            VillagerData villagerData = new VillagerData(villager.getVillagerData().getType(), VillagerProfession.NONE,
+                    villager.getVillagerData().getLevel());
             villager.setVillagerData(villagerData);
 
             // play a sound
@@ -48,8 +49,8 @@ public class CamdenResume extends SwordItem {
     @Override
     public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
         Random randomInt = new Random();
-        EffectInstance effect = new EffectInstance(Effect.get(randomInt.nextInt(27) + 1), randomInt.nextInt(100)+100,
-                randomInt.nextInt(5)+1);
+        EffectInstance effect = new EffectInstance(Effect.get(randomInt.nextInt(27) + 1),
+                randomInt.nextInt(101) + 100, randomInt.nextInt(5) + 1);
 
         if (entity.isLiving()) {
             LivingEntity mob = (LivingEntity) entity;
