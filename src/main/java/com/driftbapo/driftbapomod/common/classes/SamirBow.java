@@ -32,8 +32,4 @@ public class SamirBow extends BowItem {
         return ActionResult.resultSuccess(itemStackIn);
     }
 
-    @Override
-    public void onPlayerStoppedUsing(ItemStack i, World worldIn, PlayerEntity p, int i){
-
-    }
 }
