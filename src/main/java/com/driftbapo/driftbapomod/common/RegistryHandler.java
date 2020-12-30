@@ -2,12 +2,15 @@ package com.driftbapo.driftbapomod.common;
 
 import com.driftbapo.driftbapomod.common.classes.BrianAxe;
 import com.driftbapo.driftbapomod.common.classes.CamdenResume;
+import com.driftbapo.driftbapomod.common.classes.SamirBow;
 import com.driftbapo.driftbapomod.common.classes.ZachBaton;
 import com.driftbapo.driftbapomod.common.items.CamdenItem;
 import com.driftbapo.driftbapomod.common.items.ZachItem;
 import com.driftbapo.driftbapomod.common.tools.BrianItem;
 import com.driftbapo.driftbapomod.common.tools.KerryItem;
+import com.driftbapo.driftbapomod.common.tools.SamirItem;
 import net.minecraft.item.AxeItem;
+import net.minecraft.item.BowItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.SwordItem;
@@ -15,6 +18,7 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.lwjgl.system.CallbackI;
 
 public class RegistryHandler {
     // create DeferredRegister object
@@ -22,6 +26,8 @@ public class RegistryHandler {
     public static final DeferredRegister<Item> KERRY = DeferredRegister.create(ForgeRegistries.ITEMS, KerryItem.MODID);
     public static final DeferredRegister<Item> ZACH = DeferredRegister.create(ForgeRegistries.ITEMS, ZachItem.MODID);
     public static final DeferredRegister<Item> CAMDEN = DeferredRegister.create(ForgeRegistries.ITEMS, CamdenItem.MODID);
+    public static final DeferredRegister<Item> SAMIR = DeferredRegister.create(ForgeRegistries.ITEMS,
+        SamirItem.MODID);
 
 
     public static void init() {
@@ -30,6 +36,8 @@ public class RegistryHandler {
         KERRY.register(FMLJavaModLoadingContext.get().getModEventBus());
         ZACH.register(FMLJavaModLoadingContext.get().getModEventBus());
         CAMDEN.register(FMLJavaModLoadingContext.get().getModEventBus());
+        SAMIR.register(FMLJavaModLoadingContext.get().getModEventBus());
+
 
     }
 
@@ -52,5 +60,10 @@ public class RegistryHandler {
     // Camden
     public static final RegistryObject<SwordItem> CAMDENRESUME = CAMDEN.register("camdenresume", () ->
             new CamdenResume(CamdenItem.CAMDENRESUME, 1, 1, (new Item.Properties()).group(ItemGroup.MISC))
+    );
+
+    // Samir
+    public static final RegistryObject<BowItem> SAMIRBOW = SAMIR.register("samirbow", () ->
+        new SamirBow((new Item.Properties()).group(ItemGroup.MISC))
     );
 }
