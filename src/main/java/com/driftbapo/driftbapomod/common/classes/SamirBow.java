@@ -1,9 +1,12 @@
 package com.driftbapo.driftbapomod.common.classes;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.item.BowItem;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
@@ -31,5 +34,17 @@ public class SamirBow extends BowItem {
         worldIn.addEntity(arrow);
         return ActionResult.resultSuccess(itemStackIn);
     }
+
+    @Override
+    public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity p, int timeLeft){
+
+    }
+
+   /* public static void main(String[] args){
+        BowItem b = new BowItem((new Item.Properties()).group(ItemGroup.MISC));
+        int i = b.onPlayerStoppedUsing();
+    }
+    */
+
 
 }
