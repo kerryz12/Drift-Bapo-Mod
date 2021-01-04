@@ -1,38 +1,20 @@
 package com.driftbapo.driftbapomod.common.classes;
 
 import com.driftbapo.driftbapomod.common.driftbapomod;
-import jdk.jfr.internal.Utils;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.client.particle.ParticleManager;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.merchant.villager.VillagerData;
-import net.minecraft.entity.merchant.villager.VillagerEntity;
-import net.minecraft.entity.merchant.villager.VillagerProfession;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.potion.Effect;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.RayTraceContext;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.structure.TemplateStructurePiece;
 import net.minecraft.world.gen.feature.template.PlacementSettings;
 import net.minecraft.world.gen.feature.template.Template;
 import net.minecraft.world.gen.feature.template.TemplateManager;
-import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.common.extensions.IForgeWorldServer;
 import java.util.Random;
-import net.minecraft.block.StructureBlock;
 
 public class HenriqueHouse extends PickaxeItem {
 

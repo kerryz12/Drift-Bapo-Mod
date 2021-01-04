@@ -11,7 +11,6 @@ import com.driftbapo.driftbapomod.common.items.ZachItem;
 import com.driftbapo.driftbapomod.common.tools.BrianItem;
 import com.driftbapo.driftbapomod.common.tools.KerryItem;
 import net.minecraft.item.*;
-import net.minecraft.world.gen.feature.structure.Structure;
 import com.driftbapo.driftbapomod.common.tools.SamirItem;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.BowItem;
@@ -22,7 +21,6 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import org.lwjgl.system.CallbackI;
 
 public class RegistryHandler {
     // create DeferredRegister object
@@ -68,6 +66,7 @@ public class RegistryHandler {
     // Henrique
     public static final RegistryObject<PickaxeItem> HENRIQUEHOUSE = HENRIQUE.register("henriquehouse", () ->
             new HenriqueHouse(HenriqueItem.HENRIQUEHOUSE, 1, 1, (new Item.Properties()).group(ItemGroup.MISC))
+    );
 
     // Samir
     public static final RegistryObject<BowItem> SAMIRBOW = SAMIR.register("samirbow", () ->
