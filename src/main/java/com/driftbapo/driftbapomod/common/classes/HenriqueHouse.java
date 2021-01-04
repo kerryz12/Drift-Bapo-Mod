@@ -1,6 +1,7 @@
 package com.driftbapo.driftbapomod.common.classes;
 
 import com.driftbapo.driftbapomod.common.driftbapomod;
+import com.driftbapo.driftbapomod.common.items.HenriqueUndoItem;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
@@ -18,13 +19,15 @@ import java.util.Random;
 
 public class HenriqueHouse extends PickaxeItem {
 
+    private Template undo_template = new Template();
+    private BlockPos undo_blockpos = new BlockPos(0, 0, 0);
+
     public HenriqueHouse (IItemTier itier, int ad, float atkspd, Properties builder) {
         super(itier, ad, atkspd, builder);
     }
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity p, Hand handIn) {
-        ItemStack itemStackIn = p.getHeldItem(handIn);
         BlockRayTraceResult rayTraceResult = this.rayTrace(worldIn, p, RayTraceContext.FluidMode.NONE);
         BlockPos origin = rayTraceResult.getPos();
 
@@ -39,15 +42,21 @@ public class HenriqueHouse extends PickaxeItem {
 
             if (template != null) {
                 BlockState blockState = serverworld.getBlockState(origin);
-                BlockPos offset = origin.add(-17, -1, -17);
+                BlockPos offset = origin.add(-16, -1, -16);
+                BlockPos size = BlockPos.ZERO.add(33,256,33);
 
-                serverworld.notifyBlockUpdate(origin, blockState, blockState, 3);
+                serverworld.notifyBlockUpdate(offset, blockState, blockState, 3);
 
+                undo_template.takeBlocksFromWorld(worldIn, offset, size, false, null);
+                undo_blockpos = offset;
                 template.func_237144_a_(serverworld, offset, placementsettings, func_214074_b(serverworld.getSeed()));
             }
         }
 
-        return ActionResult.resultPass(itemStackIn);
+        ItemStack henriqueUndo = new HenriqueUndo(HenriqueUndoItem.HENRIQUEUNDO, 1, 1, (new Item.Properties()).group(ItemGroup.MISC),
+                undo_template, undo_blockpos).getDefaultInstance();
+
+        return ActionResult.resultPass(henriqueUndo);
     }
 
     // taken from StructureBlockTileEntity.java
