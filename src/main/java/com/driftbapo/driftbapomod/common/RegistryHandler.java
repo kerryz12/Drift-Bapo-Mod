@@ -2,12 +2,16 @@ package com.driftbapo.driftbapomod.common;
 
 import com.driftbapo.driftbapomod.common.classes.BrianAxe;
 import com.driftbapo.driftbapomod.common.classes.CamdenResume;
+import com.driftbapo.driftbapomod.common.classes.HenriqueHouse;
 import com.driftbapo.driftbapomod.common.classes.SamirBow;
 import com.driftbapo.driftbapomod.common.classes.ZachBaton;
 import com.driftbapo.driftbapomod.common.items.CamdenItem;
+import com.driftbapo.driftbapomod.common.items.HenriqueItem;
 import com.driftbapo.driftbapomod.common.items.ZachItem;
 import com.driftbapo.driftbapomod.common.tools.BrianItem;
 import com.driftbapo.driftbapomod.common.tools.KerryItem;
+import net.minecraft.item.*;
+import net.minecraft.world.gen.feature.structure.Structure;
 import com.driftbapo.driftbapomod.common.tools.SamirItem;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.BowItem;
@@ -26,8 +30,8 @@ public class RegistryHandler {
     public static final DeferredRegister<Item> KERRY = DeferredRegister.create(ForgeRegistries.ITEMS, KerryItem.MODID);
     public static final DeferredRegister<Item> ZACH = DeferredRegister.create(ForgeRegistries.ITEMS, ZachItem.MODID);
     public static final DeferredRegister<Item> CAMDEN = DeferredRegister.create(ForgeRegistries.ITEMS, CamdenItem.MODID);
-    public static final DeferredRegister<Item> SAMIR = DeferredRegister.create(ForgeRegistries.ITEMS,
-        SamirItem.MODID);
+    public static final DeferredRegister<Item> HENRIQUE = DeferredRegister.create(ForgeRegistries.ITEMS, HenriqueItem.MODID);
+    public static final DeferredRegister<Item> SAMIR = DeferredRegister.create(ForgeRegistries.ITEMS, SamirItem.MODID);
 
 
     public static void init() {
@@ -36,9 +40,8 @@ public class RegistryHandler {
         KERRY.register(FMLJavaModLoadingContext.get().getModEventBus());
         ZACH.register(FMLJavaModLoadingContext.get().getModEventBus());
         CAMDEN.register(FMLJavaModLoadingContext.get().getModEventBus());
+        HENRIQUE.register(FMLJavaModLoadingContext.get().getModEventBus());
         SAMIR.register(FMLJavaModLoadingContext.get().getModEventBus());
-
-
     }
 
     // register item
@@ -61,6 +64,10 @@ public class RegistryHandler {
     public static final RegistryObject<SwordItem> CAMDENRESUME = CAMDEN.register("camdenresume", () ->
             new CamdenResume(CamdenItem.CAMDENRESUME, 1, 1, (new Item.Properties()).group(ItemGroup.MISC))
     );
+
+    // Henrique
+    public static final RegistryObject<PickaxeItem> HENRIQUEHOUSE = HENRIQUE.register("henriquehouse", () ->
+            new HenriqueHouse(HenriqueItem.HENRIQUEHOUSE, 1, 1, (new Item.Properties()).group(ItemGroup.MISC))
 
     // Samir
     public static final RegistryObject<BowItem> SAMIRBOW = SAMIR.register("samirbow", () ->

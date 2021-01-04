@@ -1,5 +1,6 @@
 package com.driftbapo.driftbapomod.common.classes;
 
+import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.client.particle.IParticleFactory;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -16,6 +17,8 @@ import net.minecraft.particles.ItemParticleData;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.*;
+import net.minecraft.world.World;
+
 import java.util.Random;
 
 public class CamdenResume extends SwordItem {
@@ -41,6 +44,7 @@ public class CamdenResume extends SwordItem {
 
             // display some particles
             //World worldIn = target.getEntityWorld();
+            //ParticleManager.IParticleMetaFactory
             //worldIn.addParticle(particleData, target.getPosX(), target.getPosY(), target.getPosZ(), 1.0, 1.0, 1.0);
 
         }
