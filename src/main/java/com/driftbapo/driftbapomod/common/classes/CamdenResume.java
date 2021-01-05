@@ -47,6 +47,7 @@ public class CamdenResume extends SwordItem {
         return ActionResultType.SUCCESS;
     }
 
+    // gives the hit entity a random potion effect with potency I-V and duration 5-10 seconds
     @Override
     public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
         Random randomInt = new Random();
@@ -58,6 +59,7 @@ public class CamdenResume extends SwordItem {
             mob.addPotionEffect(effect);
         }
 
+        // return false to continue normal damage calculation
         return false;
     }
 }

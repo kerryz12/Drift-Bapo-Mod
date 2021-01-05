@@ -70,7 +70,7 @@ public class RegistryHandler {
 
     public static final RegistryObject<PickaxeItem> HENRIQUEUNDO = HENRIQUE_.register("henriqueundo", () ->
             new HenriqueUndo(HenriqueUndoItem.HENRIQUEUNDO, 1, 1, (new Item.Properties()).group(ItemGroup.MISC),
-                    new Template(), new BlockPos(0, 0, 0))
+                    null, new BlockPos(0, 0, 0))
     );
 
     // Samir

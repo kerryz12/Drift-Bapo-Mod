@@ -36,7 +36,8 @@ public class HenriqueUndo extends PickaxeItem {
 
                 serverworld.notifyBlockUpdate(undo_blockPos, blockState, blockState, 3);
 
-                undo_template.func_237144_a_(serverworld, undo_blockPos, placementsettings, func_214074_b(serverworld.getSeed()));
+                undo_template.func_237144_a_(serverworld, undo_blockPos, placementsettings,
+                        func_214074_b(serverworld.getSeed()));
             }
         }
 

@@ -25,10 +25,12 @@ public class BrianAxe extends AxeItem {
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity p, Hand handIn) {
         counter = 0;
+        // get held item, and block player is looking at
         ItemStack itemStackIn = p.getHeldItem(handIn);
         BlockRayTraceResult rayTraceResult = this.rayTrace(worldIn, p, RayTraceContext.FluidMode.NONE);
         BlockPos origin = rayTraceResult.getPos();
 
+        // call the recursive helper function
         helper_function(worldIn, p, handIn, origin);
 
         return ActionResult.resultPass(itemStackIn);
@@ -37,6 +39,8 @@ public class BrianAxe extends AxeItem {
     private ActionResult<ItemStack> helper_function(World worldIn, PlayerEntity p, Hand handIn, BlockPos origin) {
         ItemStack itemStackIn = p.getHeldItem(handIn);
 
+        // if isTree returns true, increment the counter. If the counter exceeds the limit, return
+        // otherwise, destroy the block and call the function again at an adjacent block
         if (isTree(worldIn, origin)) {
             counter++;
             if (counter > BLOCK_BREAK_LIMIT) {
@@ -54,6 +58,7 @@ public class BrianAxe extends AxeItem {
         return ActionResult.resultPass(itemStackIn);
     }
 
+    // returns true if the block at origin is a leaf or log block
     private boolean isTree(World worldIn, BlockPos origin) {
         ResourceLocation logsID = new ResourceLocation("minecraft", "logs");
         ResourceLocation leavesID = new ResourceLocation("minecraft", "leaves");
@@ -62,21 +67,6 @@ public class BrianAxe extends AxeItem {
             || BlockTags.getCollection().getTagByID(leavesID).contains(worldIn.getBlockState(origin).getBlock()))
             return true;
 
-        return false;
-    }
-
-    private static boolean isTreeOld(World worldIn, BlockPos origin) {
-        if(worldIn.getBlockState(origin).getBlock().equals(Blocks.STRIPPED_OAK_LOG) || worldIn.getBlockState(origin).getBlock().equals(Blocks.OAK_LOG)
-            || worldIn.getBlockState(origin).getBlock().equals(Blocks.STRIPPED_BIRCH_LOG) || worldIn.getBlockState(origin).getBlock().equals(Blocks.BIRCH_LOG)
-            || worldIn.getBlockState(origin).getBlock().equals(Blocks.STRIPPED_ACACIA_LOG) || worldIn.getBlockState(origin).getBlock().equals(Blocks.ACACIA_LOG)
-            || worldIn.getBlockState(origin).getBlock().equals(Blocks.STRIPPED_DARK_OAK_LOG) || worldIn.getBlockState(origin).getBlock().equals(Blocks.DARK_OAK_LOG)
-            || worldIn.getBlockState(origin).getBlock().equals(Blocks.STRIPPED_JUNGLE_LOG) || worldIn.getBlockState(origin).getBlock().equals(Blocks.JUNGLE_LOG)
-            || worldIn.getBlockState(origin).getBlock().equals(Blocks.STRIPPED_SPRUCE_LOG) || worldIn.getBlockState(origin).getBlock().equals(Blocks.SPRUCE_LOG)
-            || worldIn.getBlockState(origin).getBlock().equals(Blocks.OAK_LEAVES) || worldIn.getBlockState(origin).getBlock().equals(Blocks.DARK_OAK_LEAVES)
-            || worldIn.getBlockState(origin).getBlock().equals(Blocks.SPRUCE_LEAVES) || worldIn.getBlockState(origin).getBlock().equals(Blocks.ACACIA_LEAVES)
-            || worldIn.getBlockState(origin).getBlock().equals(Blocks.JUNGLE_LEAVES) || worldIn.getBlockState(origin).getBlock().equals(Blocks.BIRCH_LEAVES)){
-            return true;
-        }
         return false;
     }
 

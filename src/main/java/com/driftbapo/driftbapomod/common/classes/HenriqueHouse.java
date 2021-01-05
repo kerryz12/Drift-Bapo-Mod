@@ -34,7 +34,7 @@ public class HenriqueHouse extends PickaxeItem {
         if (!worldIn.isRemote) {
             ServerWorld serverworld = (ServerWorld) worldIn;
             TemplateManager templateManager = serverworld.getStructureTemplateManager();
-            ResourceLocation resourceLocation = new ResourceLocation(driftbapomod.MODID, "test");
+            ResourceLocation resourceLocation = new ResourceLocation(driftbapomod.MODID, "house1");
             Template template = templateManager.getTemplate(resourceLocation);
 
             PlacementSettings placementsettings = (new PlacementSettings()).setMirror(Mirror.NONE).
@@ -53,8 +53,8 @@ public class HenriqueHouse extends PickaxeItem {
             }
         }
 
-        ItemStack henriqueUndo = new HenriqueUndo(HenriqueUndoItem.HENRIQUEUNDO, 1, 1, (new Item.Properties()).group(ItemGroup.MISC),
-                undo_template, undo_blockpos).getDefaultInstance();
+        ItemStack henriqueUndo = new HenriqueUndo(HenriqueUndoItem.HENRIQUEUNDO, 1, 1,
+                (new Item.Properties()).group(ItemGroup.MISC), undo_template, undo_blockpos).getDefaultInstance();
 
         return ActionResult.resultPass(henriqueUndo);
     }
@@ -62,5 +62,9 @@ public class HenriqueHouse extends PickaxeItem {
     // taken from StructureBlockTileEntity.java
     private static Random func_214074_b(long p_214074_0_) {
         return p_214074_0_ == 0L ? new Random(Util.milliTime()) : new Random(p_214074_0_);
+    }
+
+    private String housePicker() {
+        return null;
     }
 }
