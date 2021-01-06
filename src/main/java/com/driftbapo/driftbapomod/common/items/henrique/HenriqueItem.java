@@ -1,4 +1,4 @@
-package com.driftbapo.driftbapomod.common.items;
+package com.driftbapo.driftbapomod.common.items.henrique;
 
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;

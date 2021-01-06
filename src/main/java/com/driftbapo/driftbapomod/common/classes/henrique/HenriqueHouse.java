@@ -1,7 +1,7 @@
-package com.driftbapo.driftbapomod.common.classes;
+package com.driftbapo.driftbapomod.common.classes.henrique;
 
 import com.driftbapo.driftbapomod.common.driftbapomod;
-import com.driftbapo.driftbapomod.common.items.HenriqueUndoItem;
+import com.driftbapo.driftbapomod.common.items.henrique.HenriqueRotateItem;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
@@ -19,8 +19,9 @@ import java.util.Random;
 
 public class HenriqueHouse extends PickaxeItem {
 
-    private Template undo_template = new Template();
-    private BlockPos undo_blockpos = new BlockPos(0, 0, 0);
+    private Template undoTemplate = new Template();
+    private BlockPos rotateBlockpos = new BlockPos(0, 0, 0);
+    private Template originalTemplate = new Template();
 
     public HenriqueHouse (IItemTier itier, int ad, float atkspd, Properties builder) {
         super(itier, ad, atkspd, builder);
@@ -47,16 +48,18 @@ public class HenriqueHouse extends PickaxeItem {
 
                 serverworld.notifyBlockUpdate(offset, blockState, blockState, 3);
 
-                undo_template.takeBlocksFromWorld(worldIn, offset, size, false, null);
-                undo_blockpos = offset;
+                undoTemplate.takeBlocksFromWorld(worldIn, offset, size, false, null);
+                rotateBlockpos = offset;
+                originalTemplate = template;
                 template.func_237144_a_(serverworld, offset, placementsettings, func_214074_b(serverworld.getSeed()));
             }
         }
 
-        ItemStack henriqueUndo = new HenriqueUndo(HenriqueUndoItem.HENRIQUEUNDO, 1, 1,
-                (new Item.Properties()).group(ItemGroup.MISC), undo_template, undo_blockpos).getDefaultInstance();
+        ItemStack henriqueRotate = new HenriqueRotate(HenriqueRotateItem.HENRIQUEROTATE, 1, 1,
+                (new Item.Properties()).group(ItemGroup.MISC), originalTemplate, undoTemplate, rotateBlockpos,
+                Rotation.NONE).getDefaultInstance();
 
-        return ActionResult.resultPass(henriqueUndo);
+        return ActionResult.resultPass(henriqueRotate);
     }
 
     // taken from StructureBlockTileEntity.java

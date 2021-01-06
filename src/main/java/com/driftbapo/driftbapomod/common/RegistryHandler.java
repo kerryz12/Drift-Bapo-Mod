@@ -1,9 +1,11 @@
 package com.driftbapo.driftbapomod.common;
 
 import com.driftbapo.driftbapomod.common.classes.*;
+import com.driftbapo.driftbapomod.common.classes.henrique.HenriqueHouse;
+import com.driftbapo.driftbapomod.common.classes.henrique.HenriqueRotate;
 import com.driftbapo.driftbapomod.common.items.CamdenItem;
-import com.driftbapo.driftbapomod.common.items.HenriqueItem;
-import com.driftbapo.driftbapomod.common.items.HenriqueUndoItem;
+import com.driftbapo.driftbapomod.common.items.henrique.HenriqueItem;
+import com.driftbapo.driftbapomod.common.items.henrique.HenriqueRotateItem;
 import com.driftbapo.driftbapomod.common.items.ZachItem;
 import com.driftbapo.driftbapomod.common.tools.BrianItem;
 import com.driftbapo.driftbapomod.common.tools.KerryItem;
@@ -15,7 +17,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.SwordItem;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.gen.feature.template.Template;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
@@ -68,9 +69,9 @@ public class RegistryHandler {
             new HenriqueHouse(HenriqueItem.HENRIQUEHOUSE, 1, 1, (new Item.Properties()).group(ItemGroup.MISC))
     );
 
-    public static final RegistryObject<PickaxeItem> HENRIQUEUNDO = HENRIQUE_.register("henriqueundo", () ->
-            new HenriqueUndo(HenriqueUndoItem.HENRIQUEUNDO, 1, 1, (new Item.Properties()).group(ItemGroup.MISC),
-                    null, new BlockPos(0, 0, 0))
+    public static final RegistryObject<PickaxeItem> HENRIQUEROTATE = HENRIQUE_.register("henriquerotate", () ->
+            new HenriqueRotate(HenriqueRotateItem.HENRIQUEROTATE, 1, 1, (new Item.Properties()).group(ItemGroup.MISC),
+                    null, null, new BlockPos(0, 0, 0), null)
     );
 
     // Samir

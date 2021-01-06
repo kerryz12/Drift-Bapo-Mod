@@ -1,18 +1,18 @@
-package com.driftbapo.driftbapomod.common.items;
+package com.driftbapo.driftbapomod.common.items.henrique;
 
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.Ingredient;
 
-public enum HenriqueUndoItem implements IItemTier {
-    HENRIQUEUNDO(1.0F, 1.0F, -1, 25, 25, Item.getItemById(264));
+public enum HenriqueRotateItem implements IItemTier {
+    HENRIQUEROTATE(1.0F, 1.0F, -1, 25, 25, Item.getItemById(264));
 
     public static final String MODID = "driftbapomod";
     private float attackDamage, efficiency;
     private int durability, harvestLevel, enchantability;
     private Item repairMaterial;
 
-    HenriqueUndoItem(float attackDamage, float efficiency, int durability, int harvestLevel, int enchantability, Item repairMaterial) {
+    HenriqueRotateItem(float attackDamage, float efficiency, int durability, int harvestLevel, int enchantability, Item repairMaterial) {
         this.attackDamage = attackDamage;
         this.efficiency = efficiency;
         this.durability = durability;
