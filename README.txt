@@ -1,4 +1,4 @@
-## Drift Bapo Mod
+Drift Bapo Mod
 
 Adds helpful items which you've always wanted in Minecraft!
 
