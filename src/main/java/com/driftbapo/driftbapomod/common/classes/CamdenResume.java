@@ -10,9 +10,11 @@ import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.*;
+import net.minecraft.world.World;
 
 import java.util.Random;
 
@@ -38,9 +40,9 @@ public class CamdenResume extends SwordItem {
             target.playSound(event, 100, 0);
 
             // display some particles
-            //World worldIn = target.getEntityWorld();
-            //ParticleManager.IParticleMetaFactory
-            //worldIn.addParticle(particleData, target.getPosX(), target.getPosY(), target.getPosZ(), 1.0, 1.0, 1.0);
+            World worldIn = target.getEntityWorld();
+            worldIn.addParticle(ParticleTypes.EXPLOSION_EMITTER, villager.getPosition().getX(),
+                    villager.getPosition().getY(), villager.getPosition().getZ(), 1.0D, 0.0D, 0.0D);
 
         }
 

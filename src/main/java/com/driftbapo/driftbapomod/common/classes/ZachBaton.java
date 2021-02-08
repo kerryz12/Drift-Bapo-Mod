@@ -6,7 +6,11 @@ import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
+import net.minecraft.particles.ParticleTypes;
+import net.minecraft.state.EnumProperty;
+import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.state.properties.NoteBlockInstrument;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -19,6 +23,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ZachBaton extends SwordItem {
+    public static final EnumProperty<NoteBlockInstrument> INSTRUMENT = BlockStateProperties.NOTE_BLOCK_INSTRUMENT;
+    public static final IntegerProperty NOTE = BlockStateProperties.NOTE_0_24;
 
     public ZachBaton (IItemTier itier, int ad, float atkspd, Item.Properties builder) {
         super(itier, ad, atkspd, builder);
@@ -46,12 +52,16 @@ public class ZachBaton extends SwordItem {
             }
 
             // play the current noteblock note
-            //ResourceLocation selLocation = new ResourceLocation("minecraft",
-            //        "block.note_block." + states.get(0));
-            //SoundEvent selEvent = new SoundEvent(selLocation);
+            net.minecraftforge.event.world.NoteBlockEvent.Play e = new net.minecraftforge.event.world.NoteBlockEvent
+                    .Play(worldIn, origin, state, state.get(NOTE), state.get(INSTRUMENT));
 
-            //worldIn.playSound(p, origin, selEvent, SoundCategory.PLAYERS, 100,
-            //        Float.parseFloat(states.get(1)));
+            state = state.with(NOTE, e.getVanillaNoteId()).with(INSTRUMENT, e.getInstrument());
+            int i = state.get(NOTE);
+            float f = (float)Math.pow(2.0D, (double)(i - 12) / 12.0D);
+
+            worldIn.playSound(p, origin, state.get(INSTRUMENT).getSound(), SoundCategory.RECORDS, 3.0F, f);
+            worldIn.addParticle(ParticleTypes.NOTE, (double)origin.getX() + 0.5D, (double)origin.getY() + 1.2D,
+                    (double)origin.getZ() + 0.5D, (double)i / 24.0D, 0.0D, 0.0D);
 
         }
 
