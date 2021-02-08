@@ -36,7 +36,7 @@ public class BrianAxe extends AxeItem {
         return ActionResult.resultPass(itemStackIn);
     }
 
-    private ActionResult<ItemStack> helper_function(World worldIn, PlayerEntity p, Hand handIn, BlockPos origin) {
+    private void helper_function(World worldIn, PlayerEntity p, Hand handIn, BlockPos origin) {
         ItemStack itemStackIn = p.getHeldItem(handIn);
 
         // if isTree returns true, increment the counter. If the counter exceeds the limit, return
@@ -44,7 +44,7 @@ public class BrianAxe extends AxeItem {
         if (isTree(worldIn, origin)) {
             counter++;
             if (counter > BLOCK_BREAK_LIMIT) {
-                return ActionResult.resultFail(itemStackIn);
+                return;
             }
             worldIn.destroyBlock(origin, true);
             helper_function(worldIn, p, handIn, origin.add(1, 0, 0));
@@ -55,7 +55,7 @@ public class BrianAxe extends AxeItem {
             helper_function(worldIn, p, handIn, origin.add(0, 0, -1));
         }
 
-        return ActionResult.resultPass(itemStackIn);
+        return;
     }
 
     // returns true if the block at origin is a leaf or log block
@@ -63,11 +63,8 @@ public class BrianAxe extends AxeItem {
         ResourceLocation logsID = new ResourceLocation("minecraft", "logs");
         ResourceLocation leavesID = new ResourceLocation("minecraft", "leaves");
 
-        if (BlockTags.getCollection().getTagByID(logsID).contains(worldIn.getBlockState(origin).getBlock())
-            || BlockTags.getCollection().getTagByID(leavesID).contains(worldIn.getBlockState(origin).getBlock()))
-            return true;
-
-        return false;
+        return BlockTags.getCollection().getTagByID(logsID).contains(worldIn.getBlockState(origin).getBlock())
+                || BlockTags.getCollection().getTagByID(leavesID).contains(worldIn.getBlockState(origin).getBlock());
     }
 
 }

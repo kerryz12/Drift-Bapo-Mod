@@ -8,10 +8,10 @@ bin
 
 # idea
 out
+.idea
 *.ipr
 *.iws
 *.iml
-.idea
 
 # gradle
 build

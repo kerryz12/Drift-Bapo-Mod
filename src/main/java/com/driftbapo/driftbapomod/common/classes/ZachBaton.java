@@ -44,6 +44,15 @@ public class ZachBaton extends SwordItem {
                 p.sendMessage(new TranslationTextComponent(states.get(0)), p.getUniqueID());
                 p.sendMessage(new TranslationTextComponent(numToNote(states.get(1))), p.getUniqueID());
             }
+
+            // play the current noteblock note
+            //ResourceLocation selLocation = new ResourceLocation("minecraft",
+            //        "block.note_block." + states.get(0));
+            //SoundEvent selEvent = new SoundEvent(selLocation);
+
+            //worldIn.playSound(p, origin, selEvent, SoundCategory.PLAYERS, 100,
+            //        Float.parseFloat(states.get(1)));
+
         }
 
         else {
